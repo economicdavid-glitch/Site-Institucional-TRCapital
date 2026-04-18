@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TR Capital | O Novo Padrão de Assessoria Financeira</title>
+<meta name="description" content="TR Capital — Um modelo único de assessoria financeira. Reestruturação, formação executiva e decisões estratégicas dentro do seu próprio negócio. David Tavares, PhD.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#070910;
+  --navy2:#0d1020;
+  --navy3:#121628;
+  --navy4:#171c30;
+  --gold:#c9a84c;
+  --gold2:#dfc06e;
+  --gold3:#f0d898;
+  --white:#ffffff;
+  --cream:#f0ebe0;
+  --muted:#7a8499;
+  --muted2:#a8b2c8;
+  --border:rgba(201,168,76,0.15);
+  --border2:rgba(201,168,76,0.07);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--navy);color:var(--cream);font-family:'Jost',sans-serif;font-weight:300;overflow-x:hidden;}
+
+/* TICKER */
+.ticker-bar{position:fixed;top:0;left:0;right:0;z-index:900;height:34px;background:var(--gold);overflow:hidden;display:flex;align-items:center;}
+.ticker-track{display:flex;animation:ticker 36s linear infinite;width:max-content;align-items:center;}
+.ticker-item{font-family:'Jost',sans-serif;font-size:9px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--navy);padding:0 52px;white-space:nowrap;display:flex;align-items:center;gap:20px;}
+.ticker-item::after{content:'◆';font-size:5px;opacity:0.5;}
+@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* NAV */
+nav{position:fixed;top:34px;left:0;right:0;z-index:800;display:flex;justify-content:space-between;align-items:center;padding:28px 72px;transition:all 0.5s ease;}
+nav.scrolled{top:0;background:rgba(7,9,16,0.97);backdrop-filter:blur(20px);padding:16px 72px;border-bottom:1px solid var(--border);}
+.logo{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:700;letter-spacing:5px;color:var(--white);text-decoration:none;}
+.logo span{color:var(--gold);}
+.nav-links{display:flex;gap:44px;list-style:none;align-items:center;}
+.nav-links a{font-size:10px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted2);text-decoration:none;transition:color 0.3s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{background:var(--gold)!important;color:var(--navy)!important;padding:10px 24px;font-weight:600!important;}
+.nav-cta:hover{background:var(--gold2)!important;}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;}
+.hamburger span{display:block;width:22px;height:1px;background:var(--cream);}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:34px 72px 96px;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 100% 70% at 100% 0%,rgba(201,168,76,0.08) 0%,transparent 55%),radial-gradient(ellipse 60% 60% at 5% 95%,rgba(201,168,76,0.04) 0%,transparent 50%),linear-gradient(155deg,#07091a 0%,#090c16 55%,#07091a 100%);}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.025) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 85% 85% at 50% 50%,black 20%,transparent 80%);}
+.hero-ring{position:absolute;top:12%;right:6%;width:420px;height:420px;border:1px solid rgba(201,168,76,0.07);border-radius:50%;pointer-events:none;}
+.hero-ring::before{content:'';position:absolute;inset:56px;border:1px solid rgba(201,168,76,0.04);border-radius:50%;}
+
+.hero-eyebrow{font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:flex;align-items:center;gap:16px;opacity:0;animation:fadeUp 0.9s 0.2s ease forwards;}
+.hero-eyebrow::before{content:'';width:48px;height:1px;background:var(--gold);}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(54px,8vw,116px);font-weight:600;line-height:0.9;letter-spacing:-2px;color:var(--white);margin-bottom:60px;opacity:0;animation:fadeUp 0.9s 0.3s ease forwards;}
+h1 em{display:block;font-style:italic;font-weight:300;color:var(--gold);}
+h1 .h1-sub{display:block;font-size:clamp(20px,2.6vw,36px);font-weight:300;font-style:normal;color:var(--muted2);letter-spacing:0;margin-top:14px;}
+
+.hero-row{display:flex;justify-content:space-between;align-items:flex-end;gap:48px;flex-wrap:wrap;opacity:0;animation:fadeUp 0.9s 0.45s ease forwards;}
+.hero-desc{max-width:500px;font-size:15px;line-height:1.95;color:var(--muted2);}
+.hero-desc strong{color:var(--cream);font-weight:400;}
+.hero-cta{display:flex;gap:16px;align-items:center;margin-top:36px;flex-wrap:wrap;}
+.btn-primary{background:var(--gold);color:var(--navy);padding:17px 44px;font-family:'Jost',sans-serif;font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;display:inline-block;transition:all 0.3s;}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 20px 48px rgba(201,168,76,0.3);}
+.btn-ghost{border:1px solid rgba(201,168,76,0.4);color:var(--gold);padding:16px 36px;font-family:'Jost',sans-serif;font-size:10px;font-weight:500;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all 0.3s;}
+.btn-ghost:hover{border-color:var(--gold);background:rgba(201,168,76,0.07);}
+
+.hero-stats{display:flex;gap:56px;flex-shrink:0;opacity:0;animation:fadeUp 0.9s 0.6s ease forwards;}
+.h-stat{text-align:right;}
+.h-stat-val{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:600;color:var(--white);line-height:1;}
+.h-stat-val span{font-size:28px;color:var(--gold);font-weight:300;}
+.h-stat-label{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-top:8px;}
+.scroll-col{position:absolute;bottom:48px;right:72px;display:flex;flex-direction:column;align-items:center;gap:10px;}
+.scroll-col span{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);writing-mode:vertical-rl;}
+.scroll-line{width:1px;height:56px;background:linear-gradient(180deg,var(--gold),transparent);animation:pulse 2s ease-in-out infinite;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+@keyframes pulse{0%,100%{opacity:0.3;}50%{opacity:1;}}
+
+/* MARQUEE */
+.marquee-bar{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 0;background:var(--navy2);overflow:hidden;}
+.marquee-track{display:flex;animation:marquee 26s linear infinite;width:max-content;}
+.marquee-item{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);padding:0 56px;display:flex;align-items:center;gap:20px;white-space:nowrap;}
+.marquee-sep{color:var(--gold);font-size:8px;}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* SHARED */
+.section-tag{font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:14px;}
+.section-tag::before{content:'';width:36px;height:1px;background:var(--gold);}
+h2{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,4.5vw,68px);font-weight:600;line-height:1.0;color:var(--white);letter-spacing:-1px;margin-bottom:24px;}
+h2 em{font-style:italic;color:var(--gold);font-weight:300;}
+.gold-div{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0.2;}
+
+/* MODELO ÚNICO */
+#modelo{background:var(--navy2);padding:140px 72px;position:relative;overflow:hidden;}
+#modelo::before{content:'"';position:absolute;right:-20px;top:-40px;font-family:'Cormorant Garamond',serif;font-size:500px;font-weight:700;color:rgba(201,168,76,0.02);line-height:1;pointer-events:none;}
+.modelo-grid{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start;}
+.modelo-text p{font-size:16px;line-height:2.0;color:var(--muted2);margin-bottom:22px;}
+.modelo-text p strong{color:var(--cream);font-weight:400;}
+.modelo-text p em{color:var(--gold);font-style:normal;}
+
+.modelo-badge{
+  display:inline-flex;align-items:center;gap:12px;
+  border:1px solid var(--gold);
+  padding:12px 24px;
+  margin-bottom:36px;
+  background:rgba(201,168,76,0.04);
+}
+.modelo-badge span{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);}
+.modelo-badge-dot{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:blink 2s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+
+.modelo-pillars{display:flex;flex-direction:column;gap:1px;background:rgba(201,168,76,0.08);}
+.mpillar{background:var(--navy3);padding:32px 36px;position:relative;transition:all 0.3s;cursor:default;}
+.mpillar::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--gold);opacity:0;transition:opacity 0.3s;}
+.mpillar:hover{background:var(--navy4);}
+.mpillar:hover::before{opacity:1;}
+.mpillar-num{font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:600;color:var(--gold);letter-spacing:2px;margin-bottom:10px;opacity:0.7;}
+.mpillar-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--white);margin-bottom:8px;}
+.mpillar-text{font-size:12px;color:var(--muted);line-height:1.8;}
+
+/* CORE SERVICES */
+#core{background:var(--navy);padding:140px 72px;}
+.core-intro{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:80px;}
+.core-intro p{font-size:16px;line-height:1.95;color:var(--muted2);}
+.core-intro p strong{color:var(--cream);font-weight:400;}
+
+/* FEATURE CARDS — 2 principais */
+.core-features{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(201,168,76,0.1);margin-bottom:2px;}
+.feature-card{background:var(--navy2);padding:60px 52px;position:relative;overflow:hidden;transition:background 0.4s;}
+.feature-card:hover{background:var(--navy3);}
+.feature-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));transform:scaleX(0);transform-origin:left;transition:transform 0.5s;}
+.feature-card:hover::after{transform:scaleX(1);}
+.fc-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+.fc-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3vw,44px);font-weight:600;color:var(--white);line-height:1.05;margin-bottom:24px;letter-spacing:-1px;}
+.fc-title em{font-style:italic;color:var(--gold);font-weight:300;}
+.fc-text{font-size:14px;color:var(--muted2);line-height:1.9;margin-bottom:32px;}
+.fc-text strong{color:var(--cream);font-weight:400;}
+.fc-items{display:flex;flex-direction:column;gap:10px;}
+.fc-item{display:flex;align-items:flex-start;gap:12px;font-size:13px;color:var(--muted2);line-height:1.5;}
+.fc-item::before{content:'—';color:var(--gold);flex-shrink:0;font-size:12px;margin-top:1px;}
+.fc-bg-num{position:absolute;bottom:-20px;right:-10px;font-family:'Cormorant Garamond',serif;font-size:200px;font-weight:700;color:rgba(201,168,76,0.03);line-height:1;pointer-events:none;}
+
+/* SECONDARY SERVICES */
+.srv-list{display:flex;flex-direction:column;gap:1px;background:rgba(201,168,76,0.08);}
+.srv-row{display:grid;grid-template-columns:64px 1fr 260px 36px;align-items:center;gap:40px;padding:32px 48px;background:var(--navy);border-left:2px solid transparent;transition:all 0.4s;cursor:default;position:relative;}
+.srv-row::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(201,168,76,0.04),transparent 60%);opacity:0;transition:opacity 0.4s;}
+.srv-row:hover{border-left-color:var(--gold);background:var(--navy2);padding-left:60px;}
+.srv-row:hover::after{opacity:1;}
+.srv-n{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:rgba(201,168,76,0.18);transition:color 0.4s;}
+.srv-row:hover .srv-n{color:rgba(201,168,76,0.45);}
+.srv-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--white);margin-bottom:4px;transition:color 0.3s;}
+.srv-row:hover .srv-title{color:var(--gold2);}
+.srv-desc{font-size:12px;color:var(--muted);line-height:1.6;}
+.srv-pills{display:flex;flex-wrap:wrap;gap:6px;}
+.pill{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,0.22);padding:5px 10px;background:rgba(201,168,76,0.04);}
+.srv-arr{font-size:18px;color:var(--gold);opacity:0;transform:translateX(-8px);transition:all 0.35s;}
+.srv-row:hover .srv-arr{opacity:1;transform:translateX(0);}
+
+/* INCO — In-Company Model */
+#inco{background:var(--navy2);padding:140px 72px;position:relative;overflow:hidden;}
+.inco-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:100px;align-items:center;}
+.inco-left p{font-size:16px;line-height:2.0;color:var(--muted2);margin-bottom:22px;}
+.inco-left p strong{color:var(--cream);font-weight:400;}
+.inco-left p em{color:var(--gold);font-style:normal;}
+
+.inco-highlight{border:1px solid var(--border);padding:40px 44px;background:rgba(201,168,76,0.03);position:relative;margin-top:40px;}
+.inco-highlight::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold);}
+.ih-label{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.ih-text{font-size:15px;line-height:1.9;color:var(--muted2);}
+.ih-text strong{color:var(--cream);font-weight:400;}
+
+.inco-steps{display:flex;flex-direction:column;gap:1px;background:rgba(201,168,76,0.08);}
+.inco-step{background:var(--navy3);padding:28px 32px;display:flex;gap:24px;align-items:flex-start;transition:background 0.3s;position:relative;}
+.inco-step::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--gold);opacity:0;transition:opacity 0.3s;}
+.inco-step:hover{background:var(--navy4);}
+.inco-step:hover::before{opacity:1;}
+.is-num{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:600;color:rgba(201,168,76,0.25);flex-shrink:0;line-height:1;transition:color 0.3s;}
+.inco-step:hover .is-num{color:rgba(201,168,76,0.5);}
+.is-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--white);margin-bottom:6px;}
+.is-text{font-size:12px;color:var(--muted);line-height:1.75;}
+
+/* PARTNERSHIPS */
+#partnerships{background:var(--navy);padding:140px 72px;}
+.partners-head{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:72px;}
+.partners-head p{font-size:16px;line-height:1.95;color:var(--muted2);}
+.partners-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(201,168,76,0.08);}
+.partner-card{background:var(--navy);padding:44px 40px;position:relative;transition:background 0.4s;overflow:hidden;}
+.partner-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.4s;}
+.partner-card:hover{background:var(--navy2);}
+.partner-card:hover::after{transform:scaleX(1);}
+.partner-icon{width:48px;height:48px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:all 0.3s;}
+.partner-card:hover .partner-icon{border-color:rgba(201,168,76,0.5);background:rgba(201,168,76,0.06);}
+.partner-icon svg{width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:1.5;}
+.partner-title{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;color:var(--white);margin-bottom:12px;}
+.partner-text{font-size:13px;color:var(--muted);line-height:1.85;}
+.partner-text strong{color:var(--muted2);font-weight:400;}
+
+/* BRAZIL — SUPPORTING SECTION */
+#brazil{background:var(--navy2);padding:80px 72px;}
+.brazil-wrap{display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:center;}
+.brazil-label-col{}
+.brazil-content{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,168,76,0.08);}
+.brazil-card{background:var(--navy2);padding:28px 28px;transition:background 0.3s;}
+.brazil-card:hover{background:var(--navy3);}
+.bc-icon{width:36px;height:36px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.bc-icon svg{width:15px;height:15px;stroke:var(--gold);fill:none;stroke-width:1.5;}
+.bc-title{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--white);margin-bottom:8px;}
+.bc-text{font-size:11px;color:var(--muted);line-height:1.7;}
+
+/* PROFILE */
+#profile{background:var(--navy);padding:140px 72px;}
+.profile-grid{display:grid;grid-template-columns:340px 1fr;gap:100px;align-items:start;}
+.profile-card{background:var(--navy2);border:1px solid var(--border);padding:48px 40px;position:sticky;top:120px;}
+.profile-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold));}
+.pc-mono{width:80px;height:80px;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--navy);margin-bottom:24px;letter-spacing:2px;}
+.pc-name{font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:600;color:var(--white);margin-bottom:4px;line-height:1.1;}
+.pc-title{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;}
+.pc-div{height:1px;background:var(--border);margin:24px 0;}
+.pc-creds{display:flex;flex-direction:column;gap:12px;}
+.pc-cred{display:flex;align-items:flex-start;gap:10px;font-size:12px;color:var(--muted2);line-height:1.5;}
+.pc-dot{width:5px;height:5px;background:var(--gold);border-radius:50%;flex-shrink:0;margin-top:5px;}
+.pc-links{display:flex;flex-direction:column;gap:10px;margin-top:28px;}
+.pc-link{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted2);text-decoration:none;transition:color 0.3s;}
+.pc-link:hover{color:var(--gold);}
+.pc-link-icon{width:30px;height:30px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.3s;}
+.pc-link:hover .pc-link-icon{border-color:var(--gold);background:rgba(201,168,76,0.08);}
+.pc-link-icon svg{width:13px;height:13px;fill:none;stroke:var(--gold);stroke-width:1.5;}
+
+.profile-content p{font-size:16px;line-height:2.0;color:var(--muted2);margin-bottom:22px;}
+.profile-content p strong{color:var(--cream);font-weight:400;}
+.profile-content p em{color:var(--gold);font-style:normal;}
+
+.track-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:48px;background:rgba(201,168,76,0.08);}
+.track-box{background:var(--navy2);padding:28px 32px;transition:background 0.3s;}
+.track-box:hover{background:var(--navy3);}
+.track-title{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:var(--white);margin-bottom:8px;}
+.track-text{font-size:12px;color:var(--muted);line-height:1.75;}
+
+/* IMPACT NUMBERS */
+#impact{background:var(--navy2);padding:100px 72px;}
+.impact-nums{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(201,168,76,0.1);}
+.i-box{background:var(--navy3);padding:44px 36px;transition:background 0.3s;position:relative;}
+.i-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--gold);opacity:0;transition:opacity 0.3s;}
+.i-box:hover{background:var(--navy4);}
+.i-box:hover::before{opacity:1;}
+.i-val{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:600;color:var(--white);line-height:1;margin-bottom:12px;}
+.i-val span{font-size:28px;color:var(--gold);font-weight:300;}
+.i-label{font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;line-height:1.5;}
+
+/* CTA */
+#cta{background:var(--navy);padding:160px 72px;text-align:center;position:relative;overflow:hidden;}
+#cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 65% 65% at 50% 50%,rgba(201,168,76,0.07) 0%,transparent 70%);}
+.cta-tag{font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:flex;align-items:center;justify-content:center;gap:14px;}
+.cta-tag::before,.cta-tag::after{content:'';width:36px;height:1px;background:var(--gold);}
+#cta h2{font-size:clamp(44px,6vw,84px);margin-bottom:28px;}
+#cta>div>p{font-size:16px;color:var(--muted2);max-width:540px;margin:0 auto 56px;line-height:1.9;}
+.cta-btns{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:80px;}
+.contact-strip{display:flex;justify-content:center;gap:80px;flex-wrap:wrap;}
+.cs-item{display:flex;flex-direction:column;align-items:center;gap:10px;}
+.cs-label{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);}
+.cs-val{font-size:14px;color:var(--cream);text-decoration:none;transition:color 0.3s;}
+.cs-val:hover{color:var(--gold);}
+
+/* FOOTER */
+footer{background:var(--navy2);border-top:1px solid var(--border);padding:44px 72px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;}
+.foot-logo{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;letter-spacing:5px;color:var(--white);}
+.foot-logo span{color:var(--gold);}
+.foot-copy{font-size:11px;color:var(--muted);letter-spacing:1px;}
+.foot-links{display:flex;gap:32px;}
+.foot-links a{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.3s;}
+.foot-links a:hover{color:var(--gold);}
+
+/* WA */
+.wa-float{position:fixed;bottom:32px;right:32px;z-index:700;background:#25D366;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 8px 32px rgba(37,211,102,0.4);transition:transform 0.3s;}
+.wa-float:hover{transform:scale(1.12);}
+
+/* FADE */
+.fu{opacity:0;transform:translateY(36px);transition:all 0.85s ease;}
+.fu.vis{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  nav,nav.scrolled{padding:16px 36px;}
+  nav{top:34px;}
+  #hero,#modelo,#core,#inco,#partnerships,#brazil,#profile,#impact,#cta{padding:90px 36px;}
+  .modelo-grid,.inco-grid,.profile-grid,.core-intro,.partners-head,.brazil-wrap{grid-template-columns:1fr;gap:48px;}
+  .profile-card{position:static;}
+  .core-features{grid-template-columns:1fr;}
+  .brazil-content{grid-template-columns:1fr 1fr;}
+  .impact-nums{grid-template-columns:1fr 1fr;}
+  .hero-stats{flex-wrap:wrap;gap:32px;}
+  .srv-row{grid-template-columns:56px 1fr;gap:20px;padding:28px 32px;}
+  .srv-pills,.srv-arr{display:none;}
+  footer{padding:32px 36px;}
+  .contact-strip{gap:36px;}
+}
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  h1{letter-spacing:-1px;}
+  .partners-grid,.track-grid,.brazil-content,.impact-nums{grid-template-columns:1fr;}
+  .hero-row{flex-direction:column;align-items:flex-start;}
+  .hero-stats{justify-content:flex-start;}
+  .h-stat{text-align:left;}
+  footer{flex-direction:column;align-items:flex-start;}
+  .foot-links{display:none;}
+  .cta-btns{flex-direction:column;align-items:center;}
+  #brazil{padding:60px 32px;}
+}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-track">
+    <div class="ticker-item">Reestruturação Financeira</div>
+    <div class="ticker-item">Formação Executiva In-Company</div>
+    <div class="ticker-item">CFO Permanente</div>
+    <div class="ticker-item">Board Advisory</div>
+    <div class="ticker-item">Family Office</div>
+    <div class="ticker-item">M&amp;A</div>
+    <div class="ticker-item">Valuation</div>
+    <div class="ticker-item">Sucessão Empresarial</div>
+    <div class="ticker-item">Gestão Patrimonial</div>
+    <div class="ticker-item">Reestruturação Financeira</div>
+    <div class="ticker-item">Formação Executiva In-Company</div>
+    <div class="ticker-item">CFO Permanente</div>
+    <div class="ticker-item">Board Advisory</div>
+    <div class="ticker-item">Family Office</div>
+    <div class="ticker-item">M&amp;A</div>
+    <div class="ticker-item">Valuation</div>
+    <div class="ticker-item">Sucessão Empresarial</div>
+    <div class="ticker-item">Gestão Patrimonial</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="logo">TR<span>.</span>CAPITAL</a>
+  <ul class="nav-links">
+    <li><a href="#modelo">O Modelo</a></li>
+    <li><a href="#core">Serviços</a></li>
+    <li><a href="#inco">In-Company</a></li>
+    <li><a href="#profile">Liderança</a></li>
+    <li><a href="#cta" class="nav-cta">Fale Conosco</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-ring"></div>
+
+  <div class="hero-eyebrow">TR Capital · Strategic Financial Advisory · Est. 2003 · Curitiba · Brasil</div>
+
+  <h1>
+    Uma nova forma<br>
+    <em>de fazer fortuna.</em>
+    <span class="h1-sub">A assessoria que transforma seu negócio por dentro.</span>
+  </h1>
+
+  <div class="hero-row">
+    <div>
+      <p class="hero-desc">
+        A TR Capital criou um modelo que não existe em mais nenhum lugar do Brasil: <strong>reestruturação financeira real, formação executiva e decisões estratégicas de alto nível — aplicadas dentro do próprio negócio do cliente.</strong> Não é consultoria. É uma parceria que gera riqueza de dentro para fora.
+      </p>
+      <div class="hero-cta">
+        <a href="#modelo" class="btn-primary">Conhecer o Modelo TR Capital</a>
+        <a href="#cta" class="btn-ghost">Falar com David Tavares</a>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="h-stat">
+        <div class="h-stat-val">R$<span>5B+</span></div>
+        <div class="h-stat-label">Em Negócios Administrados</div>
+      </div>
+      <div class="h-stat">
+        <div class="h-stat-val">20<span>+</span></div>
+        <div class="h-stat-label">Anos de Experiência</div>
+      </div>
+      <div class="h-stat">
+        <div class="h-stat-val">300<span>+</span></div>
+        <div class="h-stat-label">Operações Concluídas</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-col">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <span class="marquee-item">Reestruturação Financeira <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Formação Executiva <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">CFO Permanente <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Family Office <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Board Advisory <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">M&amp;A <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Valuation <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Sucessão <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Reestruturação Financeira <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Formação Executiva <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">CFO Permanente <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Family Office <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Board Advisory <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">M&amp;A <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Valuation <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Sucessão <span class="marquee-sep">◆</span></span>
+  </div>
+</div>
+
+<!-- MODELO ÚNICO -->
+<section id="modelo">
+  <div class="modelo-grid">
+    <div class="modelo-text fu">
+      <div class="modelo-badge">
+        <div class="modelo-badge-dot"></div>
+        <span>Modelo exclusivo · Único no Brasil</span>
+      </div>
+      <div class="section-tag">O Modelo TR Capital</div>
+      <h2>Consultoria que<br><em>entra no negócio.</em></h2>
+      <p>A consultoria tradicional entrega um relatório e vai embora. A TR Capital <em>fica</em> — e opera dentro da sua empresa como parceiro permanente, aplicando estratégia financeira real, formação executiva de alto nível e decisões de classe mundial no ambiente do seu próprio negócio.</p>
+      <p>Não existe nada igual no Brasil. <strong>É a convergência entre o rigor técnico de um PhD em finanças, a experiência operacional de um CFO sênior e a profundidade de um parceiro que conhece o seu negócio por dentro.</strong></p>
+      <p>O resultado não é um diagnóstico. É <em>transformação mensurável</em> — em caixa, em margem, em governança, em valor e no preparo da próxima geração para liderar.</p>
+      <div style="margin-top:44px;">
+        <a href="#cta" class="btn-primary">Quero Este Modelo no Meu Negócio</a>
+      </div>
+    </div>
+
+    <div class="modelo-pillars fu">
+      <div class="mpillar">
+        <div class="mpillar-num">PILAR 01</div>
+        <div class="mpillar-title">Seu Negócio Como Laboratório</div>
+        <p class="mpillar-text">A formação executiva e a estratégia financeira não acontecem em uma sala de aula ou em uma apresentação. Acontecem dentro da sua empresa — com os seus números, seus desafios reais, sua equipe e sua cultura. Aprendizado que gera resultado imediato.</p>
+      </div>
+      <div class="mpillar">
+        <div class="mpillar-num">PILAR 02</div>
+        <div class="mpillar-title">Reestruturação Como Alavanca de Crescimento</div>
+        <p class="mpillar-text">Reestruturar não é sinal de fraqueza — é o movimento mais inteligente que um empresário pode fazer. A TR Capital identifica onde o dinheiro está sendo destruído e transforma esse ponto de dor em alavanca de crescimento sustentável.</p>
+      </div>
+      <div class="mpillar">
+        <div class="mpillar-num">PILAR 03</div>
+        <div class="mpillar-title">Decisões Financeiras de Classe Mundial</div>
+        <p class="mpillar-text">Cada decisão importante — compra, venda, expansão, sucessão, captação, distribuição de patrimônio — passa por análise técnica de nível institucional. Você decide com a clareza de quem tem o melhor CFO ao lado.</p>
+      </div>
+      <div class="mpillar">
+        <div class="mpillar-num">PILAR 04</div>
+        <div class="mpillar-title">Sucessão Preparada, Legado Garantido</div>
+        <p class="mpillar-text">O maior risco de uma família empresarial é a transição de geração sem preparação. A TR Capital forma os sucessores dentro do próprio negócio — com responsabilidades reais, mentoria direta e desenvolvimento financeiro executivo acelerado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-div"></div>
+
+<!-- CORE SERVICES -->
+<section id="core">
+  <div class="core-intro fu">
+    <div>
+      <div class="section-tag">Serviços</div>
+      <h2>O que a TR Capital<br><em>entrega para você.</em></h2>
+    </div>
+    <p>Cada serviço da TR Capital é uma engrenagem do mesmo motor: <strong>potencializar a riqueza do cliente — financeira, patrimonial e executiva.</strong> Do caixa da empresa ao legado da família.</p>
+  </div>
+
+  <!-- FEATURE CARDS — PRINCIPAIS -->
+  <div class="core-features">
+    <div class="feature-card fu">
+      <div class="fc-label">Serviço Principal · 01</div>
+      <div class="fc-title">Reestruturação<br><em>Financeira</em></div>
+      <p class="fc-text">O diagnóstico que a maioria dos empresários nunca fez — e que pode ser a diferença entre crescer e sobreviver. <strong>A TR Capital mergulha nos números, identifica as causas reais da destruição de valor e entrega um plano de recuperação executável.</strong></p>
+      <div class="fc-items">
+        <div class="fc-item">Diagnóstico financeiro completo em até 5 dias úteis</div>
+        <div class="fc-item">Renegociação de dívidas e reestruturação de passivos</div>
+        <div class="fc-item">Recuperação de caixa e reconstrução de margem operacional</div>
+        <div class="fc-item">Reestruturação de capital e alinhamento com sócios e família</div>
+        <div class="fc-item">Acompanhamento permanente até o resultado ser consolidado</div>
+      </div>
+      <div class="fc-bg-num">01</div>
+    </div>
+    <div class="feature-card fu">
+      <div class="fc-label">Serviço Principal · 02</div>
+      <div class="fc-title">Formação Executiva<br><em>In-Company</em></div>
+      <p class="fc-text">A escola de executivos que acontece dentro da sua empresa. <strong>Herdeiros, gestores e líderes em formação são preparados para assumir o comando financeiro — com os desafios reais do negócio como ambiente de aprendizado.</strong></p>
+      <div class="fc-items">
+        <div class="fc-item">Programa CEO / CFO / COO personalizado para a família e a empresa</div>
+        <div class="fc-item">Mentoria individual direta com David Tavares, PhD</div>
+        <div class="fc-item">Aplicação de finanças avançadas nos números reais do negócio</div>
+        <div class="fc-item">Governança, tomada de decisão e alinhamento entre gerações</div>
+        <div class="fc-item">Preparação para assumir o controle financeiro com autoridade e competência</div>
+      </div>
+      <div class="fc-bg-num">02</div>
+    </div>
+  </div>
+
+  <!-- SECONDARY SERVICES -->
+  <div class="srv-list" style="margin-top:2px;">
+    <div class="srv-row fu">
+      <div class="srv-n">03</div>
+      <div>
+        <div class="srv-title">Board Advisory &amp; CFO Permanente</div>
+        <div class="srv-desc">Presença permanente como CFO externo ou conselheiro estratégico — alinhando decisões financeiras com expectativas dos sócios e estratégia de longo prazo</div>
+      </div>
+      <div class="srv-pills"><span class="pill">CFO Externo</span><span class="pill">Conselho</span><span class="pill">Governança</span></div>
+      <div class="srv-arr">→</div>
+    </div>
+    <div class="srv-row fu">
+      <div class="srv-n">04</div>
+      <div>
+        <div class="srv-title">Family Office &amp; Gestão Patrimonial</div>
+        <div class="srv-desc">Estruturação e gestão integrada do patrimônio familiar — proteção, crescimento e sucessão de legados multigeracionais com rigor técnico e visão de longo prazo</div>
+      </div>
+      <div class="srv-pills"><span class="pill">Patrimônio</span><span class="pill">Sucessão</span><span class="pill">Carteira</span></div>
+      <div class="srv-arr">→</div>
+    </div>
+    <div class="srv-row fu">
+      <div class="srv-n">05</div>
+      <div>
+        <div class="srv-title">M&amp;A — Fusões e Aquisições</div>
+        <div class="srv-desc">Estruturação, negociação e fechamento de operações de compra, venda e fusão — com presença sênior ativa em todas as etapas, do mandato ao fechamento</div>
+      </div>
+      <div class="srv-pills"><span class="pill">Due Diligence</span><span class="pill">Negociação</span><span class="pill">Integração</span></div>
+      <div class="srv-arr">→</div>
+    </div>
+    <div class="srv-row fu">
+      <div class="srv-n">06</div>
+      <div>
+        <div class="srv-title">Valuation &amp; Perícias Técnicas</div>
+        <div class="srv-desc">Laudos de avaliação com metodologia reconhecida — para transações, litígios judiciais, sucessões e decisões estratégicas de compra e venda</div>
+      </div>
+      <div class="srv-pills"><span class="pill">FCD</span><span class="pill">Múltiplos</span><span class="pill">Laudo Judicial</span></div>
+      <div class="srv-arr">→</div>
+    </div>
+    <div class="srv-row fu">
+      <div class="srv-n">07</div>
+      <div>
+        <div class="srv-title">Negócios Internacionais &amp; Importação</div>
+        <div class="srv-desc">Expansão além das fronteiras — análise de viabilidade, estruturação financeira, canais de importação e acesso a traders internacionais especializados</div>
+      </div>
+      <div class="srv-pills"><span class="pill">Importação</span><span class="pill">Expansão Global</span><span class="pill">Estruturação</span></div>
+      <div class="srv-arr">→</div>
+    </div>
+    <div class="srv-row fu">
+      <div class="srv-n">08</div>
+      <div>
+        <div class="srv-title">Private Label &amp; Estratégia de Varejo</div>
+        <div class="srv-desc">Desenvolvimento de marcas próprias e estratégia financeira e comercial para operações de varejo físico e e-commerce multicanal em crescimento</div>
+      </div>
+      <div class="srv-pills"><span class="pill">Marca Própria</span><span class="pill">Varejo</span><span class="pill">E-commerce</span></div>
+      <div class="srv-arr">→</div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-div"></div>
+
+<!-- IN-COMPANY MODEL -->
+<section id="inco">
+  <div class="inco-grid">
+    <div class="inco-left fu">
+      <div class="section-tag">Como Funciona Na Prática</div>
+      <h2>Sua empresa é<br><em>o ambiente.</em></h2>
+      <p>A grande inovação da TR Capital é simples e poderosa: <em>a sua empresa vira o laboratório.</em> Não existe teoria desconectada da realidade. Cada análise financeira, cada decisão estratégica, cada sessão de formação executiva — tudo acontece com os seus números, na sua cultura, com os seus desafios reais.</p>
+      <p>O empresário recebe consultoria de alto nível. Os herdeiros recebem formação real. A empresa recebe estrutura e governança. <strong>E o patrimônio da família cresce com segurança e profissionalismo.</strong></p>
+      <div class="inco-highlight">
+        <div class="ih-label">Por Que Isso É Diferente</div>
+        <p class="ih-text">Qualquer um pode fazer um curso de finanças. <strong>Ninguém mais no Brasil forma executivos dentro do próprio negócio da família, com mentoria direta de um CFO sênior, aplicando estratégia real sobre os números reais da empresa.</strong> Esse é o modelo TR Capital — e os resultados são incomparáveis.</p>
+      </div>
+    </div>
+
+    <div class="inco-steps fu">
+      <div class="inco-step">
+        <div class="is-num">01</div>
+        <div>
+          <div class="is-title">Diagnóstico do Negócio e da Família</div>
+          <p class="is-text">Entendimento profundo da situação financeira, operacional, societária e dos objetivos da família empresarial. Identificação dos pontos de destruição de valor e das oportunidades ocultas.</p>
+        </div>
+      </div>
+      <div class="inco-step">
+        <div class="is-num">02</div>
+        <div>
+          <div class="is-title">Plano Integrado de Ação</div>
+          <p class="is-text">Estratégia financeira personalizada + programa de formação executiva sob medida para os herdeiros e líderes da família — aplicados na realidade do negócio.</p>
+        </div>
+      </div>
+      <div class="inco-step">
+        <div class="is-num">03</div>
+        <div>
+          <div class="is-title">Execução Como Parceiro Sênior</div>
+          <p class="is-text">David Tavares entra no negócio como CFO permanente — presente nas decisões, alinhando sócios, formando os sucessores e garantindo que a estratégia saia do papel.</p>
+        </div>
+      </div>
+      <div class="inco-step">
+        <div class="is-num">04</div>
+        <div>
+          <div class="is-title">Resultados Financeiros Mensuráveis</div>
+          <p class="is-text">Caixa recuperado, margens reconstruídas, patrimônio estruturado, herdeiros prontos. Métricas definidas no início — e entregues ao final. Sem desculpas.</p>
+        </div>
+      </div>
+      <div class="inco-step">
+        <div class="is-num">05</div>
+        <div>
+          <div class="is-title">Parceria Permanente</div>
+          <p class="is-text">O relacionamento com a TR Capital não termina com o projeto. Os melhores clientes nos chamam antes de cada decisão importante — porque sabem o que custa decidir sem o parceiro certo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-div"></div>
+
+<!-- PARTNERSHIPS -->
+<section id="partnerships">
+  <div class="partners-head fu">
+    <div>
+      <div class="section-tag">Ecossistema TR Capital</div>
+      <h2>Parcerias que<br><em>completam a solução.</em></h2>
+    </div>
+    <p>A TR Capital não opera em isolamento. Em 20 anos, construímos um ecossistema de parceiros estratégicos que cobrem cada dimensão do negócio do cliente. <strong>Você chega com uma necessidade — tem acesso a uma rede completa e selecionada.</strong></p>
+  </div>
+
+  <div class="partners-grid">
+    <div class="partner-card fu">
+      <div class="partner-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="partner-title">Escritórios de Advocacia</div>
+      <p class="partner-text">Parceiros jurídicos especializados em direito societário, M&amp;A, contratos internacionais, planejamento tributário e sucessório. <strong>Quando a TR Capital estrutura uma operação, a parte jurídica está coberta com quem entende de negócios complexos</strong> — não advogados generalistas.</p>
+    </div>
+    <div class="partner-card fu">
+      <div class="partner-icon">
+        <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+      </div>
+      <div class="partner-title">Escritórios de Contabilidade</div>
+      <p class="partner-text">Parceiros contábeis com experiência em grupos empresariais, consolidação de balanços, apuração de tributos e compliance fiscal. <strong>Estratégia financeira executada sobre informação contábil de qualidade</strong> — não sobre dados inconsistentes que distorcem as decisões.</p>
+    </div>
+    <div class="partner-card fu">
+      <div class="partner-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+      </div>
+      <div class="partner-title">Traders de Negócios Internacionais</div>
+      <p class="partner-text">Parceiros especializados em importação, exportação e comércio exterior. <strong>Para empresas que querem expandir além do Brasil</strong>, conectamos com traders experientes que abrem canais reais — com análise de viabilidade e estrutura financeira da TR Capital.</p>
+    </div>
+    <div class="partner-card fu">
+      <div class="partner-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+      </div>
+      <div class="partner-title">Bancos, Fundos &amp; Capital</div>
+      <p class="partner-text">Relacionamento consolidado com bancos de investimento, fundos de private equity e family offices nacionais e internacionais. <strong>A TR Capital abre portas que demandam décadas para construir</strong> — e nossos clientes acessam essas portas como parte da parceria.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BRAZIL — CONTEXTO ESTRATÉGICO -->
+<section id="brazil">
+  <div class="brazil-wrap fu">
+    <div class="brazil-label-col">
+      <div class="section-tag">Contexto</div>
+      <h2 style="font-size:clamp(32px,3.5vw,52px);">O Brasil<br>no centro<br>do <em>mundo.</em></h2>
+      <p style="font-size:14px;line-height:1.9;color:var(--muted2);margin-top:20px;">Um contexto que amplia as oportunidades — para quem está estruturado para capturá-las.</p>
+    </div>
+    <div class="brazil-content">
+      <div class="brazil-card">
+        <div class="bc-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div class="bc-title">Capital Internacional</div>
+        <p class="bc-text">Fundos e investidores globais estão ativamente buscando negócios brasileiros. Sua empresa está estruturada para recebê-los?</p>
+      </div>
+      <div class="brazil-card">
+        <div class="bc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10z"/></svg></div>
+        <div class="bc-title">Expansão Internacional</div>
+        <p class="bc-text">Janela única para internacionalizar operações, abrir canais de importação e capturar margens que o mercado interno não oferece.</p>
+      </div>
+      <div class="brazil-card">
+        <div class="bc-icon"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <div class="bc-title">Quem Age Primeiro Lidera</div>
+        <p class="bc-text">Em momentos de aceleração econômica, os líderes que agem primeiro constroem vantagens difíceis de reverter. O custo de esperar é real.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-div"></div>
+
+<!-- PROFILE -->
+<section id="profile">
+  <div class="profile-grid">
+    <div class="profile-card fu">
+      <div class="pc-mono">DT</div>
+      <div class="pc-name">David Tavares</div>
+      <div class="pc-title">PhD · Fundador &amp; Managing Partner</div>
+      <div class="pc-div"></div>
+      <div class="pc-creds">
+        <div class="pc-cred"><div class="pc-dot"></div>PhD em Finanças e Economia — 20+ anos no mercado</div>
+        <div class="pc-cred"><div class="pc-dot"></div>CFO sênior de grupo varejista +R$100M de faturamento</div>
+        <div class="pc-cred"><div class="pc-dot"></div>Conselheiro de administração — múltiplos setores</div>
+        <div class="pc-cred"><div class="pc-dot"></div>Especialista em negócios internacionais e expansão global</div>
+        <div class="pc-cred"><div class="pc-dot"></div>Gestor patrimonial de famílias de alto patrimônio</div>
+        <div class="pc-cred"><div class="pc-dot"></div>Formador de sucessores e líderes financeiros</div>
+        <div class="pc-cred"><div class="pc-dot"></div>+R$5 bilhões em negócios estruturados e entregues</div>
+      </div>
+      <div class="pc-div"></div>
+      <div class="pc-links">
+        <a href="tel:+5541997253957" class="pc-link">
+          <div class="pc-link-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 014 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+          +55 (41) 9 9725-3957
+        </a>
+        <a href="mailto:economicdavid@hotmail.com" class="pc-link">
+          <div class="pc-link-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          economicdavid@hotmail.com
+        </a>
+        <a href="https://linkedin.com/in/davidtavares" target="_blank" class="pc-link">
+          <div class="pc-link-icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></div>
+          LinkedIn · David Tavares PhD
+        </a>
+        <a href="https://wa.me/5541997253957" target="_blank" class="pc-link">
+          <div class="pc-link-icon"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div>
+          WhatsApp Direto
+        </a>
+      </div>
+    </div>
+
+    <div class="profile-content fu">
+      <div class="section-tag">A Liderança por Trás do Modelo</div>
+      <h2>O CFO que faz<br><em>junto com você.</em></h2>
+      <p>David Tavares construiu em 20 anos uma trajetória que combina o que quase ninguém consegue reunir em um único profissional: <em>rigor técnico de PhD em finanças, experiência operacional de CFO sênior em grupos empresariais, visão estratégica de conselheiro de administração e comprometimento de quem tem a pele no jogo.</em></p>
+      <p>Não é consultoria de gabinete. Não é relatório enviado por e-mail. É um <strong>CFO experiente que entra no seu negócio como sócio estratégico</strong> — conhece os seus números, alinha as expectativas financeiras com os sócios e a família, forma os herdeiros com rigor real e permanece presente até o resultado ser entregue.</p>
+      <p>Em mais de duas décadas, David estruturou mais de R$ 5 bilhões em operações, reestruturou empresas que pareciam sem saída, preparou sucessores que hoje lideram com competência e construiu patrimônios que resistem às gerações. <strong>Esse é o padrão TR Capital — e é o que você tem acesso quando escolhe essa parceria.</strong></p>
+
+      <div class="track-grid">
+        <div class="track-box">
+          <div class="track-title">Finanças Avançadas</div>
+          <div class="track-text">FCD, VPL, TIR, EVA, Fleuriet, WACC — análise de nível institucional aplicada à realidade do seu negócio.</div>
+        </div>
+        <div class="track-box">
+          <div class="track-title">Expansão Internacional</div>
+          <div class="track-text">Estruturação de operações globais, importação, análise de viabilidade e acesso a redes internacionais consolidadas.</div>
+        </div>
+        <div class="track-box">
+          <div class="track-title">Governança &amp; Sucessão</div>
+          <div class="track-text">Alinhamento entre sócios, estruturação de conselhos e preparação da próxima geração para o comando.</div>
+        </div>
+        <div class="track-box">
+          <div class="track-title">Mentoria de Executivos</div>
+          <div class="track-text">Formação CEO/CFO/COO com os desafios reais do negócio como ambiente de desenvolvimento — não teoria desconectada.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-div"></div>
+
+<!-- IMPACT NUMBERS -->
+<section id="impact">
+  <div class="impact-nums fu">
+    <div class="i-box">
+      <div class="i-val">R$<span>5B+</span></div>
+      <div class="i-label">Em Negócios Estruturados e Administrados</div>
+    </div>
+    <div class="i-box">
+      <div class="i-val">20<span>+</span></div>
+      <div class="i-label">Anos de Atuação Contínua no Mercado</div>
+    </div>
+    <div class="i-box">
+      <div class="i-val">12<span>+</span></div>
+      <div class="i-label">Empresas em Reestruturação Ativa</div>
+    </div>
+    <div class="i-box">
+      <div class="i-val">8<span>+</span></div>
+      <div class="i-label">Mandatos de Board Advisory em Curso</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="fu" style="position:relative;">
+    <div class="cta-tag">O Modelo que Transforma Negócios.</div>
+    <h2>Sua empresa e sua família<br><em>merecem esse nível.</em></h2>
+    <p>Uma conversa de 30 minutos com David Tavares pode ser o ponto de inflexão que o seu negócio precisa. Sem compromisso. Sem custo. Mas com uma clareza estratégica que a maioria dos empresários nunca experimentou.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/5541997253957?text=Olá%20David%2C%20vim%20pelo%20site%20da%20TR%20Capital%20e%20quero%20conhecer%20o%20modelo%20de%20parceria." class="btn-primary" target="_blank">Quero Conhecer o Modelo TR Capital</a>
+      <a href="mailto:economicdavid@hotmail.com" class="btn-ghost">Enviar Proposta</a>
+    </div>
+    <div class="contact-strip">
+      <div class="cs-item">
+        <span class="cs-label">WhatsApp</span>
+        <a href="https://wa.me/5541997253957" class="cs-val" target="_blank">+55 (41) 9 9725-3957</a>
+      </div>
+      <div class="cs-item">
+        <span class="cs-label">E-mail</span>
+        <a href="mailto:economicdavid@hotmail.com" class="cs-val">economicdavid@hotmail.com</a>
+      </div>
+      <div class="cs-item">
+        <span class="cs-label">LinkedIn</span>
+        <a href="https://linkedin.com/in/davidtavares" class="cs-val" target="_blank">David Tavares, PhD</a>
+      </div>
+      <div class="cs-item">
+        <span class="cs-label">Sede</span>
+        <span class="cs-val">Curitiba · Paraná · Brasil</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-logo">TR<span>.</span>CAPITAL</div>
+  <div class="foot-copy">© 2025 TR Capital Assessoria e Consultoria Financeira Ltda. · Todos os direitos reservados.</div>
+  <div class="foot-links">
+    <a href="#modelo">O Modelo</a>
+    <a href="#core">Serviços</a>
+    <a href="#partnerships">Parcerias</a>
+    <a href="#profile">Liderança</a>
+    <a href="#cta">Contato</a>
+  </div>
+</footer>
+
+<!-- WA FLOAT -->
+<a href="https://wa.me/5541997253957?text=Olá%20David%2C%20vim%20pelo%20site%20da%20TR%20Capital!" class="wa-float" target="_blank">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script>
+const nb=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{nb.classList.toggle('scrolled',window.scrollY>60);});
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('vis'),i*55);obs.unobserve(e.target);}});
+},{threshold:0.07});
+document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+function toggleMenu(){
+  const links=document.querySelector('.nav-links');
+  const open=links.style.display==='flex';
+  links.style.display=open?'none':'flex';
+  if(!open){Object.assign(links.style,{flexDirection:'column',position:'fixed',top:'80px',left:'0',right:'0',background:'rgba(7,9,16,0.98)',padding:'36px',gap:'28px',backdropFilter:'blur(20px)',borderBottom:'1px solid rgba(201,168,76,0.15)',zIndex:'799'});}
+}
+document.querySelectorAll('.nav-links a').forEach(a=>{a.addEventListener('click',()=>{document.querySelector('.nav-links').style.display='none';});});
+</script>
+</body>
+</html>
